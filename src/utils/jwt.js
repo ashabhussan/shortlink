@@ -14,4 +14,16 @@ module.exports = {
 
     return `Bearer ${jwtToken}`;
   },
+
+  verifyAccessToken: (token) => {
+    return new Promise((resolve) => {
+      jwt.verify(token, jwtSecret, (error, decoded) => {
+        if (error) {
+          resolve(null);
+        } else {
+          resolve(decoded);
+        }
+      });
+    });
+  },
 };
