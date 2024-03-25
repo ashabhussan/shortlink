@@ -2,10 +2,10 @@
   "name": "shortlink",
   "version": "1.0.0",
   "description": "URL Shortener Service",
-  "main": "src/index.js",
+  "main": "src/server.js",
   "scripts": {
-    "dev": "node src/index.js",
-    "dev:watch": "nodemon src/index.js",
+    "dev": "node src/server.js",
+    "dev:watch": "nodemon src/server.js",
     "prepare": "husky",
     "lint": "eslint src/"
   },

@@ -2,7 +2,7 @@ const { UNAUTHORIZED, INTERNAL_SERVER_ERROR } = require('../utils/errors');
 const { verifyAccessToken } = require('../utils/jwt');
 const logger = require('../utils/logger');
 
-const authMiddleware = async (req, res, next) => {
+module.exports = async (req, res, next) => {
   try {
     if (!req.headers.authorization) {
       return res.status(UNAUTHORIZED.code).json({
@@ -19,7 +19,7 @@ const authMiddleware = async (req, res, next) => {
       });
     }
 
-    req.user = user;
+    req.userInfo = user;
     next();
   } catch (err) {
     logger.error(err);
@@ -28,5 +28,3 @@ const authMiddleware = async (req, res, next) => {
     });
   }
 };
-
-module.exports = authMiddleware;

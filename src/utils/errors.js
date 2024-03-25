@@ -11,6 +11,10 @@ const errors = {
     code: 403,
     message: 'Forbidden',
   },
+  NOT_FOUND: {
+    code: 404,
+    message: 'Not Found',
+  },
   UNPROCESSABLE_ENTITY: {
     code: 422,
     message: 'Unprocessable Entity',
