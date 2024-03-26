@@ -1,8 +1,7 @@
-const { Router } = require('express');
-const authRouter = require('../modules/auth/auth.routes');
+const apiRouter = require('./api.routes');
+const redirectRouter = require('./redirect.routes');
 
-const router = Router();
-
-router.use('/users', authRouter);
-
-module.exports = router;
+module.exports = {
+  apiRouter,
+  redirectRouter,
+};

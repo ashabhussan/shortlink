@@ -1,9 +1,7 @@
 const { UNPROCESSABLE_ENTITY, INTERNAL_SERVER_ERROR, UNAUTHORIZED } = require('../../utils/errors');
-const { hashPassword, comparePassword } = require('../../utils/password');
-const { generateAccessToken } = require('../../utils/jwt');
-const logger = require('../../utils/logger');
 const { isEmailExists, createUser, getUserByEmail } = require('./auth.service');
 const { userCreationValidator, userLoginValidator } = require('./auth.validator');
+const { generateAccessToken, logger, hashPassword, comparePassword } = require('../../utils');
 
 module.exports = {
   createUser: async (req, res) => {

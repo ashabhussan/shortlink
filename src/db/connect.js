@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { db } = require('../config/config');
-const logger = require('../utils/logger');
+const { logger } = require('../utils');
 
 mongoose
   .connect(db.uri)
