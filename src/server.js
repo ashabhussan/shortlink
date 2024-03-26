@@ -4,8 +4,8 @@ const express = require('express');
 const {
   app: { port },
 } = require('./config/config');
-const logger = require('./utils/logger');
 const { apiRouter, redirectRouter } = require('./routes');
+const { logger } = require('./utils');
 
 const app = express();
 

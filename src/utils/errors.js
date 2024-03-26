@@ -1,4 +1,4 @@
-const errors = {
+module.exports = {
   BAD_REQUEST: {
     code: 400,
     message: 'Bad Request',
@@ -23,6 +23,8 @@ const errors = {
     code: 500,
     message: 'Internal Server Error',
   },
+  NOT_VALID_ID: {
+    code: 422,
+    message: 'Invalid ID',
+  },
 };
-
-module.exports = errors;

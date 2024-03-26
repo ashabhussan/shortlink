@@ -1,6 +1,5 @@
+const { verifyAccessToken, logger } = require('../utils');
 const { UNAUTHORIZED, INTERNAL_SERVER_ERROR } = require('../utils/errors');
-const { verifyAccessToken } = require('../utils/jwt');
-const logger = require('../utils/logger');
 
 module.exports = async (req, res, next) => {
   try {
