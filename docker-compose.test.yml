@@ -4,11 +4,12 @@ services:
   shortlink:
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile.test
     env_file:
       - ./.env
     volumes:
       - ./src:/usr/src/app/src
+      - ./test:/usr/src/app/test
     networks:
       - shortlink-net
     depends_on:
@@ -16,7 +17,7 @@ services:
     restart: unless-stopped
     ports:
       - ${PORT}:${PORT}
-    command: npm run dev
+    command: npm run test
 
   db:
     hostname: mongo
@@ -27,12 +28,7 @@ services:
       - 27017:27017
     networks:
       - shortlink-net
-    volumes:
-      - db_vol1:/data/db
 
 networks:
   shortlink-net:
     driver: bridge
-
-volumes:
-  db_vol1:

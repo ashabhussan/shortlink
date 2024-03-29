@@ -6,11 +6,15 @@
   "scripts": {
     "dev": "node src/server.js",
     "dev:watch": "nodemon src/server.js",
+    "test": "echo 'Test Environment'",
     "prepare": "husky",
     "lint": "eslint src/",
     "dev:docker": "docker-compose --file docker-compose.dev.yml up",
     "dev:docker:rebuild": "docker-compose --file docker-compose.dev.yml build --no-cache",
-    "dev:docker:down": "docker-compose --file docker-compose.dev.yml down --remove-orphans"
+    "dev:docker:down": "docker-compose --file docker-compose.dev.yml down --remove-orphans",
+    "test:docker": "docker-compose --file docker-compose.test.yml up --abort-on-container-exit --exit-code-from shortlink",
+    "test:docker:rebuild": "docker-compose --file docker-compose.test.yml build --no-cache",
+    "posttest:docker": "docker-compose --file docker-compose.dev.yml down --remove-orphans"
   },
   "author": "Ashab Hussan",
   "license": "MIT",
