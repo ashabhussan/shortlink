@@ -9,5 +9,5 @@ if (isTestEnvironment) {
 
 mongoose
   .connect(dbURL)
-  .then(() => logger.info(`Connected to DB server. ( ${dbURL} )`))
+  .then(() => logger.info(`Connected to DB. ( ${dbURL} )`))
   .catch((err) => logger.error(`FAILED to connect using mongoose. ${err}`));

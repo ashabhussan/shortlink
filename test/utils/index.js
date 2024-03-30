@@ -1,3 +1,4 @@
 const authUtils = require('./auth');
+const sendRequest = require('./request');
 
-module.exports = { ...authUtils };
+module.exports = { sendRequest, ...authUtils };
