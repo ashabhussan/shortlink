@@ -1,8 +1,13 @@
 const mongoose = require('mongoose');
-const { db } = require('../config/config');
+const { db, isTestEnvironment } = require('../config/config');
 const { logger } = require('../utils');
 
+let dbURL = db.uri;
+if (isTestEnvironment) {
+  dbURL = `${db.uri}-test`;
+}
+
 mongoose
-  .connect(db.uri)
-  .then(() => logger.info(`Connected to DB server. ( ${db.uri} )`))
+  .connect(dbURL)
+  .then(() => logger.info(`Connected to DB server. ( ${dbURL} )`))
   .catch((err) => logger.error(`FAILED to connect using mongoose. ${err}`));
