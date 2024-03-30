@@ -17,7 +17,7 @@ services:
     restart: unless-stopped
     ports:
       - ${PORT}:${PORT}
-    command: npm run test
+    command: npm run test:watch
 
   db:
     hostname: mongo
