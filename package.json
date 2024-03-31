@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "node src/server.js",
     "dev:watch": "nodemon src/server.js",
-    "test": "jest ./test",
-    "test:watch": "jest ./test --watch",
+    "test": "cross-env NODE_ENV=test jest ./test",
+    "test:watch": "cross-env NODE_ENV=test jest ./test --watch --colors --verbose",
     "prepare": "husky",
     "lint": "eslint src/",
     "dev:docker": "docker-compose --file docker-compose.dev.yml up",
@@ -33,11 +33,15 @@
   "devDependencies": {
     "@commitlint/cli": "^19.2.1",
     "@commitlint/config-conventional": "^19.1.0",
+    "@faker-js/faker": "^8.4.1",
+    "@types/jest": "^29.5.12",
+    "cross-env": "^7.0.3",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "husky": "^9.0.11",
     "jest": "^29.7.0",
     "nodemon": "^3.1.0",
-    "prettier": "^3.2.5"
+    "prettier": "^3.2.5",
+    "supertest": "^6.3.4"
   }
 }

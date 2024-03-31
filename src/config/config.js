@@ -9,5 +9,7 @@ module.exports = {
   db: {
     uri: process.env.MONGO_URI,
   },
+  isProdEnvironment: process.env.NODE_ENV === 'production',
   isDevEnvironment: process.env.NODE_ENV === 'development',
+  isTestEnvironment: process.env.NODE_ENV === 'test',
 };

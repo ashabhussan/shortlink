@@ -1,7 +1,5 @@
 const Joi = require('joi');
-
-const passwordRegex =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[~!@#$%^&*()_+{}[\]|,.";:?'>]).{8,50}$/;
+const { passwordRegex } = require('../../utils');
 
 module.exports = {
   userCreationValidator: Joi.object()

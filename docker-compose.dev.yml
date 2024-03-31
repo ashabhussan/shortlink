@@ -29,6 +29,7 @@ services:
       - shortlink-net
     volumes:
       - db_vol1:/data/db
+    command: mongod --quiet --logpath /dev/null
 
 networks:
   shortlink-net:

@@ -28,6 +28,7 @@ services:
       - 27017:27017
     networks:
       - shortlink-net
+    command: mongod --quiet --logpath /dev/null
 
 networks:
   shortlink-net:
