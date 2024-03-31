@@ -1,10 +1,8 @@
 const supertest = require('supertest');
-const app = require('../../src/server');
+const app = require('../../src/app');
 
 module.exports = async ({ method, endpoint, token, body }) => {
   let request = supertest(app);
-
-  if (token) request.set = { authorization: token };
 
   switch (method) {
     case 'GET':
@@ -15,9 +13,15 @@ module.exports = async ({ method, endpoint, token, body }) => {
       request = request.post(endpoint).send(body);
       break;
 
+    case 'DELETE':
+      request = request.delete(endpoint);
+      break;
+
     default:
       throw new Error('Unsupported HTTP method!');
   }
+
+  if (token) request = request.set('authorization', token);
 
   return request;
 };

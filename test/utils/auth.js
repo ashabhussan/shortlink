@@ -23,6 +23,7 @@ module.exports = {
     };
 
     const newUser = await User.create(payload);
-    return { email: newUser.email, password };
+    newUser.password = password;
+    return newUser;
   },
 };

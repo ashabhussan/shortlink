@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const {
   app: { jwtSecret, jwtTokenExpirationTime },
-} = require('../config/config');
+} = require('../config');
 
 module.exports = {
   generateAccessToken: async (user) => {
