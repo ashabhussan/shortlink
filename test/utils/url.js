@@ -3,7 +3,6 @@ const URL = require('../../src/modules/url/url.model');
 const { generateUniqueId } = require('../../src/utils');
 
 module.exports = {
-  deleteUrls: async () => URL.deleteMany({}),
   createUrls: async (userId, count = 10) => {
     const urls = [];
     for (let i = 0; i < count; i++) {

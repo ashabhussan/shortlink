@@ -3,7 +3,6 @@ const { User } = require('../../src/modules/auth');
 const { hashPassword } = require('../../src/utils');
 
 module.exports = {
-  deleteUsers: async () => User.deleteMany({}),
   userPayload: (args) => {
     const {
       name = faker.person.fullName(),

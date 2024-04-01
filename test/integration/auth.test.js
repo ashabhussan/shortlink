@@ -1,14 +1,6 @@
-const { deleteUsers, userPayload, sendRequest, createUser } = require('../utils');
+const { userPayload, sendRequest, createUser } = require('../utils');
 
 describe('Auth Test Suit', () => {
-  beforeEach(async () => {
-    await deleteUsers();
-  });
-
-  afterEach(async () => {
-    await deleteUsers();
-  });
-
   describe('POST /users/create', () => {
     test('should create a new user', async () => {
       const user = userPayload();

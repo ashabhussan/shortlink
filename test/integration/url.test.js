@@ -1,22 +1,7 @@
 const { faker } = require('@faker-js/faker');
-const {
-  deleteUsers,
-  sendRequest,
-  createUser,
-  deleteUrls,
-  generateJwtToken,
-  createUrls,
-} = require('../utils');
+const { sendRequest, createUser, generateJwtToken, createUrls } = require('../utils');
 
 describe('URL Test Suit', () => {
-  beforeEach(async () => {
-    await Promise.all([deleteUsers(), deleteUrls()]);
-  });
-
-  afterEach(async () => {
-    await Promise.all([deleteUsers(), deleteUrls()]);
-  });
-
   describe('POST /urls', () => {
     test('should create a new short urls', async () => {
       const user = await createUser();
