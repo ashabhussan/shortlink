@@ -1,5 +1,5 @@
 const winston = require('winston');
-const { isDevEnvironment, isProdEnvironment } = require('../config/config');
+const { isDevEnvironment, isProdEnvironment } = require('../config');
 
 const enumerateErrorFormat = winston.format((log) => {
   if (log instanceof Error) {

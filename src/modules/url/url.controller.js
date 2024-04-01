@@ -1,7 +1,7 @@
 const { UNPROCESSABLE_ENTITY, INTERNAL_SERVER_ERROR, NOT_FOUND } = require('../../utils/errors');
 const { urlCreationValidator, urlGetValidator, urlDeleteValidator } = require('./url.validator');
 const { createShortUrl, getUrlByShortCode, getUrlsByUser, deleteUrl } = require('./url.service');
-const { app } = require('../../config/config');
+const { app } = require('../../config');
 const { logger, generateUniqueId } = require('../../utils');
 
 module.exports = {
@@ -49,7 +49,7 @@ module.exports = {
 
   getUrls: async (req, res) => {
     try {
-      const input = req.body;
+      const input = {};
       input.user = req.userInfo?.userId;
       input.page = req.query.page;
       input.perPage = req.query.perPage;
