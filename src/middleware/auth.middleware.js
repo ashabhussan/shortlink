@@ -1,29 +1,19 @@
-const { verifyAccessToken, logger } = require('../utils');
-const { UNAUTHORIZED, INTERNAL_SERVER_ERROR } = require('../utils/errors');
+const { verifyAccessToken } = require('../utils');
+const { UnauthorizedError } = require('../utils/errors');
 
 module.exports = async (req, res, next) => {
   try {
-    if (!req.headers.authorization) {
-      return res.status(UNAUTHORIZED.code).json({
-        message: UNAUTHORIZED.message,
-      });
-    }
+    if (!req.headers.authorization)
+      throw new UnauthorizedError('Must have auth token in authorization header');
 
     const token = req.headers.authorization.split(' ')[1];
 
     const user = await verifyAccessToken(token);
-    if (!user) {
-      return res.status(UNAUTHORIZED.code).json({
-        message: UNAUTHORIZED.message,
-      });
-    }
+    if (!user) throw new UnauthorizedError();
 
     req.userInfo = user;
     next();
   } catch (err) {
-    logger.error(err);
-    return res.status(INTERNAL_SERVER_ERROR.code).json({
-      message: INTERNAL_SERVER_ERROR.message,
-    });
+    next(err);
   }
 };

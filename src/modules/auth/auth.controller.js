@@ -1,75 +1,28 @@
-const { UNPROCESSABLE_ENTITY, INTERNAL_SERVER_ERROR, UNAUTHORIZED } = require('../../utils/errors');
-const { isEmailExists, createUser, getUserByEmail } = require('./auth.service');
-const { userCreationValidator, userLoginValidator } = require('./auth.validator');
-const { generateAccessToken, logger, hashPassword, comparePassword } = require('../../utils');
+const authValidator = require('./auth.validator');
+const authService = require('./auth.service');
 
 module.exports = {
-  createUser: async (req, res) => {
+  createUser: async (req, res, next) => {
     try {
-      const { error, value } = userCreationValidator.validate(req.body);
-      if (error) {
-        return res.status(UNPROCESSABLE_ENTITY.code).json({
-          message: UNPROCESSABLE_ENTITY.message,
-          value: error.details,
-        });
-      }
+      const value = authValidator.validateUserCreation(req.body);
 
-      const isUserExists = await isEmailExists(value.email);
-      if (isUserExists) {
-        return res.status(UNPROCESSABLE_ENTITY.code).json({
-          message: UNPROCESSABLE_ENTITY.message,
-          value: 'The Email already exists!',
-        });
-      }
+      const user = await authService.createUser(value);
 
-      value.password = await hashPassword(value.password);
-
-      const user = await createUser(value);
-      const token = await generateAccessToken(user);
-
-      return res.json({ data: { name: user.name, email: user.email, _id: user._id, token } });
+      return res.json({ data: user });
     } catch (err) {
-      logger.error(err);
-      return res.status(INTERNAL_SERVER_ERROR.code).json({
-        message: INTERNAL_SERVER_ERROR.message,
-      });
+      next(err);
     }
   },
 
-  login: async (req, res) => {
+  login: async (req, res, next) => {
     try {
-      const { error, value } = userLoginValidator.validate(req.body);
-      if (error) {
-        return res.status(UNPROCESSABLE_ENTITY.code).json({
-          message: UNPROCESSABLE_ENTITY.message,
-          value: error.details,
-        });
-      }
+      const value = authValidator.validateUserLogin(req.body);
 
-      const user = await getUserByEmail(value.email);
-      if (!user) {
-        return res.status(UNAUTHORIZED.code).json({
-          message: UNAUTHORIZED.message,
-          value: 'Invalid email or password!',
-        });
-      }
-
-      const isPasswordMatched = await comparePassword(value.password, user.password);
-      if (!isPasswordMatched) {
-        return res.status(UNAUTHORIZED.code).json({
-          message: UNAUTHORIZED.message,
-          value: 'Invalid email or password!',
-        });
-      }
-
-      const token = await generateAccessToken(user);
+      const token = await authService.login(value);
 
       return res.json({ data: { token } });
     } catch (err) {
-      logger.error(err);
-      return res.status(INTERNAL_SERVER_ERROR.code).json({
-        message: INTERNAL_SERVER_ERROR.message,
-      });
+      next(err);
     }
   },
 };
