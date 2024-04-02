@@ -1,4 +1,4 @@
-module.exports = {
+const errors = {
   BAD_REQUEST: {
     code: 400,
     message: 'Bad Request',
@@ -6,10 +6,6 @@ module.exports = {
   UNAUTHORIZED: {
     code: 401,
     message: 'Unauthorized',
-  },
-  FORBIDDEN: {
-    code: 403,
-    message: 'Forbidden',
   },
   NOT_FOUND: {
     code: 404,
@@ -28,3 +24,23 @@ module.exports = {
     message: 'Invalid ID',
   },
 };
+
+class NotFoundError extends Error {
+  constructor(message = errors.NOT_FOUND.message) {
+    super(message);
+  }
+}
+
+class UnauthorizedError extends Error {
+  constructor(message = errors.UNAUTHORIZED.message) {
+    super(message);
+  }
+}
+
+class BadRequestError extends Error {
+  constructor(message = errors.BAD_REQUEST.message) {
+    super(message);
+  }
+}
+
+module.exports = { errors, NotFoundError, UnauthorizedError, BadRequestError };
