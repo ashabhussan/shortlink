@@ -7,7 +7,7 @@ describe('Auth Test Suit', () => {
 
       const response = await sendRequest({
         method: 'POST',
-        endpoint: '/api/users/create',
+        endpoint: '/v1/users/create',
         body: user,
       });
 
@@ -25,7 +25,7 @@ describe('Auth Test Suit', () => {
 
       const response = await sendRequest({
         method: 'POST',
-        endpoint: '/api/users/create',
+        endpoint: '/v1/users/create',
         body: user,
       });
 
@@ -39,7 +39,7 @@ describe('Auth Test Suit', () => {
 
       const response = await sendRequest({
         method: 'POST',
-        endpoint: '/api/users/login',
+        endpoint: '/v1/users/login',
         body: { email: user.email, password: user.password },
       });
 
@@ -53,7 +53,7 @@ describe('Auth Test Suit', () => {
 
       const response = await sendRequest({
         method: 'POST',
-        endpoint: '/api/users/login',
+        endpoint: '/v1/users/login',
         body: { email: user.email, password: 'test' },
       });
 
@@ -63,7 +63,7 @@ describe('Auth Test Suit', () => {
     test('should not sent token for unregistered user', async () => {
       const response = await sendRequest({
         method: 'POST',
-        endpoint: '/api/users/login',
+        endpoint: '/v1/users/login',
         body: { email: 'test@email.com', password: 'test' },
       });
 

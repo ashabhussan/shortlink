@@ -1,7 +1,7 @@
-const apiRouter = require('./api.routes');
+const v1Router = require('./v1.routes');
 const redirectRouter = require('./redirect.routes');
 
 module.exports = {
-  apiRouter,
+  v1Router,
   redirectRouter,
 };
