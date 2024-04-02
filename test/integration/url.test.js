@@ -10,7 +10,7 @@ describe('URL Test Suit', () => {
 
       const response = await sendRequest({
         method: 'POST',
-        endpoint: '/api/urls',
+        endpoint: '/v1/urls',
         body: requestBody,
         token,
       });
@@ -30,7 +30,7 @@ describe('URL Test Suit', () => {
 
       const response = await sendRequest({
         method: 'POST',
-        endpoint: '/api/urls',
+        endpoint: '/v1/urls',
         body: requestBody,
         token,
       });
@@ -44,7 +44,7 @@ describe('URL Test Suit', () => {
 
       const response = await sendRequest({
         method: 'POST',
-        endpoint: '/api/urls',
+        endpoint: '/v1/urls',
         body: requestBody,
       });
 
@@ -63,7 +63,7 @@ describe('URL Test Suit', () => {
 
       const response = await sendRequest({
         method: 'GET',
-        endpoint: `/api/urls?page=${page}&perPage=${perPage}`,
+        endpoint: `/v1/urls?page=${page}&perPage=${perPage}`,
         token,
       });
 
@@ -84,7 +84,7 @@ describe('URL Test Suit', () => {
 
       const response = await sendRequest({
         method: 'GET',
-        endpoint: `/api/urls?page=${page}&perPage=${perPage}`,
+        endpoint: `/v1/urls?page=${page}&perPage=${perPage}`,
         token,
       });
 
@@ -97,7 +97,7 @@ describe('URL Test Suit', () => {
 
       const response = await sendRequest({
         method: 'GET',
-        endpoint: '/api/urls',
+        endpoint: '/v1/urls',
       });
 
       expect(response.statusCode).toBe(401);
@@ -113,7 +113,7 @@ describe('URL Test Suit', () => {
 
       const response = await sendRequest({
         method: 'DELETE',
-        endpoint: `/api/urls/${url._id}`,
+        endpoint: `/v1/urls/${url._id}`,
         token,
       });
 
@@ -132,7 +132,7 @@ describe('URL Test Suit', () => {
 
       const response = await sendRequest({
         method: 'DELETE',
-        endpoint: `/api/urls/${url._id}`,
+        endpoint: `/v1/urls/${url._id}`,
       });
 
       expect(response.statusCode).toBe(401);
@@ -145,7 +145,7 @@ describe('URL Test Suit', () => {
 
       const response = await sendRequest({
         method: 'DELETE',
-        endpoint: `/api/urls/${url._id}`,
+        endpoint: `/v1/urls/${url._id}`,
         token,
       });
 
