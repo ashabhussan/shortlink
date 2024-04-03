@@ -11,6 +11,7 @@ const urlValidator = {
         )
         .required(),
       originalUrl: Joi.string().uri().required(),
+      expiryDate: Joi.date().iso().greater('now'),
     }),
   ),
 
