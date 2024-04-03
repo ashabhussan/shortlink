@@ -4,11 +4,19 @@ const { NotFoundError } = require('../../utils/errors');
 const URL = require('./url.model');
 
 const urlService = {
-  createShortUrl: async ({ originalUrl, user }) => {
-    const shortCode = generateUniqueId(7);
-    const { _id } = await URL.create({ originalUrl, user, shortCode });
+  createShortUrl: async ({ originalUrl, user, expiryDate }) => {
+    const url = {
+      originalUrl,
+      user,
+      shortCode: generateUniqueId(7),
+    };
 
-    return { _id, shortUrl: `${app.url}/${shortCode}`, originalUrl };
+    if (expiryDate) {
+      url.expireAt = new Date(expiryDate);
+    }
+    const { _id, shortCode } = await URL.create(url);
+
+    return { _id, shortUrl: `${app.url}/${shortCode}`, originalUrl, expiryDate };
   },
 
   getUrlByShortCode: async (shortCode) => {

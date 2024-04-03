@@ -19,11 +19,14 @@ const urlSchema = new Schema(
       trim: true,
       required: true,
     },
+    expireAt: { type: Date },
   },
   { timestamps: true },
 );
 
 urlSchema.index({ user: 1 });
-urlSchema.index({ shortCode: 1 }, { unique: true }); // TODO: Check Index support
+urlSchema.index({ shortCode: 1 }, { unique: true });
+
+urlSchema.index({ expireAt: 1 }, { expireAfterSeconds: 0 });
 
 module.exports = mongoose.model('URL', urlSchema);
